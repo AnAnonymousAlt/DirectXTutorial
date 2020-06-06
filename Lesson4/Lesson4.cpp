@@ -33,6 +33,8 @@ int WINAPI WinMain ( HINSTANCE hInstance,
 
 	// register the window class
 	RegisterClassExW ( &wc );
+	RECT wr = { 0, 0, 200, 200 };
+	AdjustWindowRect ( &wr, WS_OVERLAPPEDWINDOW, FALSE );
 
 	// create the window and use the result as the handle
 	hWnd = CreateWindowExW ( NULL,
@@ -41,8 +43,8 @@ int WINAPI WinMain ( HINSTANCE hInstance,
 							 WS_OVERLAPPEDWINDOW, // window style
 							 300, // x-position of the window
 							 300, // y-position of the window
-							 200, // width of the window
-							 200, // height of the window
+							 wr.right - wr.left, // width of the window
+							 wr.bottom - wr.top, // height of the window
 							 NULL, // we have no parent window, NULL
 							 NULL, // we aren't using menus, NULL
 							 hInstance, // application handle
@@ -77,13 +79,13 @@ LRESULT CALLBACK WindowProc ( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 	switch ( message )
 	{
 		// this message is read when the window is closed
-		case WM_DESTROY:
-			//close the application entirely
-			PostQuitMessage ( 0 );
-			return 0;
-			break;
-		default:
-			break;
+	case WM_DESTROY:
+		//close the application entirely
+		PostQuitMessage ( 0 );
+		return 0;
+		break;
+	default:
+		break;
 	}
 
 	// handle any messages the switch statement didn't
