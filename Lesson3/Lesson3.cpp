@@ -55,6 +55,9 @@ int WINAPI WinMain ( HINSTANCE hInstance,
 
 	// this struct holds Windows event messages
 	MSG msg;
+	
+	// <image src="http://www.directxtutorial.com/Lessons/11/A1-Win32/3/3.gif" />
+	// <image src="http://www.directxtutorial.com/Lessons/11/A1-Win32/5/1.gif" />
 
 	// wait for the next messages in the queue store the result in 'msg'
 	while ( GetMessage ( &msg, NULL, 0, 0 ) )
